@@ -31,6 +31,7 @@
 
   .events__container {
     width: 80%;
+    min-height: 80vh;
     margin: 5px auto;
 
     .event-item {
@@ -40,5 +41,20 @@
       border: 1px solid rgba(168, 168, 168, 0.317);
       background-image: linear-gradient(to right, rgba(255, 255, 255, 0.551), #ebf2fd);
     }
+  }
+
+  .pagination__container {
+    width: 80%;
+    margin: 1rem auto 0px;
+
+    display: flex;
+    justify-content: center;
+  }
+
+  .events-spinner {
+    top: 40vh;
+    left: 40vw;
+    position: relative;
+    transform: translate(-50% -50%);
   }
 }

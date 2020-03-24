@@ -19,7 +19,7 @@ const EventItem = ({ item }) => {
 
         <Col>{item.date && <p>{item.date}</p>}</Col>
 
-        <Col>{item.place && <p>{item.place}</p>}</Col>
+        <Col xs={4}>{item.place && <p>{item.place}</p>}</Col>
       </Row>
     </Container>
   )

@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './style.scss'
 
 import EventItem from '../../components/EventItem'
+import Pagination from '../../components/Pagination'
 
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row, Col, Spinner } from 'react-bootstrap'
 
 import eventsObj from '../../data'
 
@@ -12,8 +13,31 @@ for (let key in eventsObj) {
   eventsArray.push(eventsObj[key])
 }
 
+//
 const EventsPage = () => {
-  const [events, setEvents] = useState(eventsArray.slice(0, 10))
+  const [eventsPerPage] = useState(10)
+  const [events, setEvents] = useState([])
+  const [currentPage, setCurrentPage] = useState(1)
+
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      setLoading(true)
+      setEvents(eventsArray)
+      setTimeout(() => setLoading(false), 2500)
+    }
+
+    fetchEvents()
+  }, [])
+
+  // Get current events
+  const indexOfLastEvent = currentPage * eventsPerPage
+  const indexOfFirsEvents = indexOfLastEvent - eventsPerPage
+  const currentEvents = events.slice(indexOfFirsEvents, indexOfLastEvent)
+
+  // Change page
+  const paginate = pageNumber => setCurrentPage(pageNumber)
 
   return (
     <div className='evnets-page__container'>
@@ -25,20 +49,33 @@ const EventsPage = () => {
           <Col>
             <h5>Date</h5>
           </Col>
-          <Col className='location-header'>
+          <Col xs={4} className='location-header'>
             <h5>Location</h5>
           </Col>
         </Row>
       </Container>
 
       <div className='events__container'>
-        {events.map(item => {
-          return (
-            <Container fluid key={item.cards_id} className='event-item'>
-              <EventItem item={item} />
-            </Container>
-          )
-        })}
+        {loading ? (
+          <Spinner variant='primary' animation='border' className='events-spinner' />
+        ) : (
+          <>
+            {currentEvents.map(item => (
+              <Container fluid key={item.cards_id} className='event-item'>
+                <EventItem item={item} />
+              </Container>
+            ))}
+
+            <div className='pagination__container'>
+              <Pagination
+                eventsPerPage={eventsPerPage}
+                totalEvents={events.length}
+                currentPage={currentPage}
+                paginate={paginate}
+              />
+            </div>
+          </>
+        )}
       </div>
     </div>
   )
