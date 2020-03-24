@@ -4,7 +4,7 @@ import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap'
 
 const NavbarComp = () => {
   return (
-    <Navbar bg='primary' variant='dark'>
+    <Navbar bg='primary' variant='dark' className='navbar__container'>
       <Navbar.Brand href='#home'>MMA</Navbar.Brand>
       <Nav className='mr-auto'>
         <Nav.Link href='#home'>Home</Nav.Link>
