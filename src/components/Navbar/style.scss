@@ -17,14 +17,17 @@
     justify-content: center;
 
     .nav-link {
-      font-size: large;
-      font-weight: 600;
-      padding: 0.8rem 1.5rem;
+      padding: 0.6rem 2.6rem;
 
       &:hover {
         border-radius: 10px;
+        color: #999;
         background-color: #eaeaea;
       }
+    }
+
+    .navbar__active-link {
+      color: #1877f2 !important;
     }
   }
 }

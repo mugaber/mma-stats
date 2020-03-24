@@ -25,7 +25,7 @@ const EventsPage = () => {
     const fetchEvents = async () => {
       setLoading(true)
       setEvents(eventsArray)
-      setTimeout(() => setLoading(false), 2500)
+      setTimeout(() => setLoading(false), 500)
     }
 
     fetchEvents()
@@ -61,7 +61,7 @@ const EventsPage = () => {
         ) : (
           <>
             {currentEvents.map(item => (
-              <Container fluid key={item.cards_id} className='event-item'>
+              <Container fluid key={item.cards_id}>
                 <EventItem item={item} />
               </Container>
             ))}

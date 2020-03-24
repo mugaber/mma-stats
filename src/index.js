@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 
 import './index.scss'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import '@fortawesome/fontawesome-free/css/all.css'
 
 import App from './App'
 

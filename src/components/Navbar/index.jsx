@@ -3,9 +3,20 @@ import './style.scss'
 
 import Logo from '../../images/logo.png'
 
-import { Navbar, Nav, Form, FormControl, Button, Container, Col } from 'react-bootstrap'
+import {
+  Navbar,
+  Nav,
+  Form,
+  FormControl,
+  Button,
+  Container,
+  Col,
+  Tooltip,
+  OverlayTrigger
+} from 'react-bootstrap'
 
-const NavbarComp = () => {
+//
+const AppNavbar = () => {
   return (
     <Navbar className='navbar__container'>
       <Container fluid>
@@ -16,8 +27,20 @@ const NavbarComp = () => {
         </Col>
 
         <Col sm={5}>
-          <Nav className='mr-auto navbar-options'>
-            <Nav.Link href='#events'>Events</Nav.Link>
+          <Nav className='navbar-options'>
+            <OverlayTrigger
+              key='bottom'
+              placement='bottom'
+              overlay={
+                <Tooltip id='tooltip-bottom'>
+                  <strong>Events</strong>
+                </Tooltip>
+              }
+            >
+              <Nav.Link href='#events' className='navbar__active-link'>
+                <i class='fas fa-calendar-week fa-2x' />
+              </Nav.Link>
+            </OverlayTrigger>
           </Nav>
         </Col>
 
@@ -32,4 +55,4 @@ const NavbarComp = () => {
   )
 }
 
-export default NavbarComp
+export default AppNavbar

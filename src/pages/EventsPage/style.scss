@@ -32,14 +32,15 @@
   .events__container {
     width: 80%;
     min-height: 80vh;
+    padding: 1rem 0 0.5rem;
     margin: 5px auto;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.551), #ebf2fd);
 
     .event-item {
       margin: 5px 0;
       font-weight: 500;
       border-radius: 5px;
       border: 1px solid rgba(168, 168, 168, 0.317);
-      background-image: linear-gradient(to right, rgba(255, 255, 255, 0.551), #ebf2fd);
     }
   }
 
