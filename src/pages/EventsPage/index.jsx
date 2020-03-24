@@ -17,7 +17,7 @@ const EventsPage = () => {
 
   return (
     <div className='evnets-page__container'>
-      <Container className='events__navigation'>
+      <Container fluid className='events__navigation'>
         <Row>
           <Col xs={5} className='name-header'>
             <h5>Name</h5>
@@ -34,7 +34,7 @@ const EventsPage = () => {
       <div className='events__container'>
         {events.map(item => {
           return (
-            <Container key={item.cards_id} className='event-item'>
+            <Container fluid key={item.cards_id} className='event-item'>
               <EventItem item={item} />
             </Container>
           )

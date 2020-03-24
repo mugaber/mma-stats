@@ -5,7 +5,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 
 const EventItem = ({ item }) => {
   return (
-    <Container>
+    <Container fluid>
       <Row className='event-row'>
         <Col xs={5}>
           {item.link ? (

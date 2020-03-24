@@ -1,5 +1,6 @@
 .evnets-page__container {
-  margin-top: 1rem;
+  padding: 2rem 0;
+  background-color: #f5f6f7;
 
   display: flex;
   flex-direction: column;
@@ -11,7 +12,7 @@
 
     color: white;
     border-radius: 5px;
-    background-color: #3e65ffec;
+    background-image: linear-gradient(#1877f2, #77a7ff);
 
     .name-header {
       position: relative;
@@ -34,9 +35,10 @@
 
     .event-item {
       margin: 5px 0;
+      font-weight: 500;
       border-radius: 5px;
-      border: 1px solid rgba(128, 128, 128, 0.531);
-      background-color: #ecfcff8d;
+      border: 1px solid rgba(168, 168, 168, 0.317);
+      background-image: linear-gradient(to right, rgba(255, 255, 255, 0.551), #ebf2fd);
     }
   }
 }
