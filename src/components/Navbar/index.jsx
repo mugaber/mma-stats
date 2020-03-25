@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './style.scss'
 
-import Logo from '../../images/blaze-punch.png'
+import { withRouter } from 'react-router-dom'
 
 import SignupForm from '../SignupForm'
+import Logo from '../../images/blaze-punch.png'
 
 import {
   Navbar,
@@ -18,14 +19,20 @@ import {
 
 //
 
-const AppNavbar = () => {
+const AppNavbar = ({ history }) => {
+  const [activePage, setActivePage] = useState('')
+
+  useEffect(() => {
+    setActivePage(history.location.pathname.slice(1))
+  }, [history.location])
+
   const [showSignup, setShowSignup] = useState(false)
 
   return (
     <Navbar className='navbar__container'>
       <Container fluid>
         <Col>
-          <Navbar.Brand className='mr-5 navbar-brand' href='#home'>
+          <Navbar.Brand className='mr-5 navbar-brand' onClick={() => history.push('/')}>
             <img src={Logo} alt='logo' style={{ height: '50px' }} />
           </Navbar.Brand>
         </Col>
@@ -41,9 +48,12 @@ const AppNavbar = () => {
                 </Tooltip>
               }
             >
-              <Nav.Link href='#events' className='navbar__active-link'>
+              <Nav.Link
+                onClick={() => history.push('/events')}
+                className={activePage === 'events' && 'navbar__active-link'}
+              >
                 <i className='fas fa-calendar-week fa-2x' />
-                {true && <div className='active-link__bottom'></div>}
+                {activePage === 'events' && <div className='active-link__bottom'></div>}
               </Nav.Link>
             </OverlayTrigger>
           </Nav>
@@ -76,4 +86,4 @@ const AppNavbar = () => {
   )
 }
 
-export default AppNavbar
+export default withRouter(AppNavbar)

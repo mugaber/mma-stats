@@ -9,6 +9,7 @@
 
   .navbar-brand {
     margin-left: 1rem;
+    cursor: pointer;
   }
 
   .navbar-options {
@@ -22,7 +23,7 @@
 
       &:hover {
         border-radius: 10px;
-        color: #999;
+        color: #666;
         background-color: #eaeaea;
       }
     }

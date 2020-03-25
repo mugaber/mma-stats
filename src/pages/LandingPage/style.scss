@@ -1,0 +1,22 @@
+.landing-page__container {
+  .landing-page__first-section {
+    min-height: calc(100vh - 24px);
+
+    color: white;
+    font-size: large;
+    letter-spacing: 0.1rem;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url(../../images/square-blue.png);
+
+    .text-container {
+      padding: 10rem 0 0 10rem;
+    }
+
+    h1 {
+      font-size: 5rem;
+    }
+  }
+}
