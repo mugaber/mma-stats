@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
+import './style.scss'
+
+import { Form, Button } from 'react-bootstrap'
 
 import axios from 'axios'
-
-import { Modal, Form, Popup, Button, Label, Icon, Message } from 'semantic-ui-react'
 
 //
 
@@ -28,12 +29,6 @@ const SignupForm = ({ showModal, setShowModal }) => {
   const [formErrors, setFormErrors] = useState(initFormErrors)
 
   const [formLoading, setFormLoading] = useState(false)
-
-  const [signupResponse, setSignupResponse] = useState({
-    show: false,
-    type: '',
-    text: ''
-  })
 
   const handleInputChange = e => {
     setFormErrors(initFormErrors)
@@ -83,132 +78,70 @@ const SignupForm = ({ showModal, setShowModal }) => {
     if (!isNameValid || !isEmailValid || !isPasswordValid || !isPasswordsMatch) return
 
     const config = { headers: { 'Content-Type': 'application/json' } }
-    const body = JSON.stringify({ name, email, password1 })
+    const body = JSON.stringify({ name, email, password: password1 })
 
     try {
       const res = await axios.post('http://localhost:5000/api/users', body, config)
-
-      console.log(res.data)
-      setSignupResponse({ show: true, type: 'success' })
+      console.log(res, res.data)
     } catch (error) {
-      console.error(error.response.data)
-      setSignupResponse({
-        show: true,
-        type: 'error',
-        text: error.response.data.errors[0].msg
-      })
+      console.error('signup error', error.response.data)
     }
   }
 
   return (
-    <Modal open={showModal} size='tiny'>
-      <Modal.Header>Sign up</Modal.Header>
-      <Modal.Content>
-        <Label floating style={{ cursor: 'pointer' }} onClick={() => setShowModal(false)}>
-          <Icon name='close' />
-        </Label>
+    <Form onSubmit={handleSubmit}>
+      <Form.Group>
+        <Form.Label>User name</Form.Label>
+        <Form.Control
+          required
+          type='text'
+          name='name'
+          value={name}
+          onChange={handleInputChange}
+          placeholder='Enter your name'
+        />
+      </Form.Group>
 
-        <Form size='large' onSubmit={handleSubmit} loading={formLoading}>
-          <Popup
-            inverted
-            style={{ opacity: 0.8 }}
-            position='right center'
-            open={formErrors.name.state}
-            content={formErrors.name.text}
-            trigger={
-              <Form.Input
-                fluid
-                icon='user'
-                iconPosition='left'
-                required
-                name='name'
-                value={name}
-                placeholder='Nname'
-                onChange={handleInputChange}
-                error={formErrors.name.state}
-              />
-            }
-          />
+      <Form.Group>
+        <Form.Label>Email address</Form.Label>
+        <Form.Control
+          required
+          type='email'
+          name='email'
+          value={email}
+          onChange={handleInputChange}
+          placeholder='Enter email'
+        />
+      </Form.Group>
 
-          <Popup
-            inverted
-            style={{ opacity: 0.8 }}
-            position='right center'
-            open={formErrors.email.state}
-            content={formErrors.email.text}
-            trigger={
-              <Form.Input
-                fluid
-                icon='mail'
-                iconPosition='left'
-                required
-                name='email'
-                value={email}
-                placeholder='E-mail'
-                onChange={handleInputChange}
-                error={formErrors.email.state}
-              />
-            }
-          />
+      <Form.Group>
+        <Form.Label>Password</Form.Label>
+        <Form.Control
+          required
+          type='password'
+          name='password1'
+          value={password1}
+          onChange={handleInputChange}
+          placeholder='Password'
+        />
+      </Form.Group>
 
-          <Popup
-            inverted
-            style={{ opacity: 0.8 }}
-            position='right center'
-            open={formErrors.password1.state}
-            content={formErrors.password1.text}
-            trigger={
-              <Form.Input
-                fluid
-                icon='lock'
-                type='password'
-                iconPosition='left'
-                required
-                name='password1'
-                value={password1}
-                placeholder='Password'
-                onChange={handleInputChange}
-                error={formErrors.password1.state}
-              />
-            }
-          />
+      <Form.Group>
+        <Form.Label>Confirm Password</Form.Label>
+        <Form.Control
+          type='password'
+          required
+          name='password2'
+          value={password2}
+          onChange={handleInputChange}
+          placeholder='Confirm your password'
+        />
+      </Form.Group>
 
-          <Popup
-            inverted
-            style={{ opacity: 0.8 }}
-            position='right center'
-            open={formErrors.password2.state}
-            content={formErrors.password2.text}
-            trigger={
-              <Form.Input
-                fluid
-                icon='lock'
-                type='password'
-                iconPosition='left'
-                required
-                name='password2'
-                value={password2}
-                placeholder='Confirm Password'
-                onChange={handleInputChange}
-                error={formErrors.password2.state}
-              />
-            }
-          />
-
-          <Button color='teal' fluid size='large' className='register-button'>
-            Register
-          </Button>
-
-          {signupResponse.show && signupResponse.type === 'success' && (
-            <Message header='Sign up success' />
-          )}
-
-          {signupResponse.show && signupResponse.type === 'error' && (
-            <Message error header='Sign up failure' content={signupResponse.text} />
-          )}
-        </Form>
-      </Modal.Content>
-    </Modal>
+      <Button variant='primary' type='submit'>
+        Submit
+      </Button>
+    </Form>
   )
 }
 

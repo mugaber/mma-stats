@@ -1,23 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './style.scss'
 
 import Logo from '../../images/blaze-punch.png'
 
+import SignupForm from '../SignupForm'
+
 import {
   Navbar,
   Nav,
-  Form,
-  FormControl,
   Button,
   Container,
   Col,
   Tooltip,
-  OverlayTrigger
+  OverlayTrigger,
+  Modal
 } from 'react-bootstrap'
 
 //
 
 const AppNavbar = () => {
+  const [showSignup, setShowSignup] = useState(false)
+
   return (
     <Navbar className='navbar__container'>
       <Container fluid>
@@ -46,12 +49,28 @@ const AppNavbar = () => {
           </Nav>
         </Col>
 
-        <Col>
-          <Form inline>
-            <FormControl type='text' placeholder='Search' className='mr-2' />
-            <Button variant='outline-primary'>Search</Button>
-          </Form>
+        <Col className='sign-buttons__container'>
+          <Button variant='outline-success'>Log In</Button>
+
+          <Button variant='outline-primary' onClick={() => setShowSignup(true)}>
+            Sign Up
+          </Button>
         </Col>
+
+        <Modal
+          centered
+          show={showSignup}
+          aria-labelledby='contained-modal-title-vcenter'
+          onHide={() => setShowSignup(false)}
+        >
+          <Modal.Header closeButton>
+            <Modal.Title id='contained-modal-title-vcenter'>Sign Up</Modal.Title>
+          </Modal.Header>
+
+          <Modal.Body>
+            <SignupForm />
+          </Modal.Body>
+        </Modal>
       </Container>
     </Navbar>
   )

@@ -45,4 +45,14 @@
       position: absolute;
     }
   }
+
+  .sign-buttons__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+    .btn-outline-primary {
+      margin-left: 0.4rem;
+    }
+  }
 }

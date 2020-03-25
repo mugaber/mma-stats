@@ -3,7 +3,6 @@ import './style.scss'
 
 import EventItem from '../../components/EventItem'
 import Pagination from '../../components/Pagination'
-import SignupForm from '../../components/SignupForm'
 
 import { Container, Row, Col, Spinner } from 'react-bootstrap'
 
@@ -78,8 +77,6 @@ const EventsPage = () => {
           </>
         )}
       </div>
-
-      <SignupForm />
     </div>
   )
 }
