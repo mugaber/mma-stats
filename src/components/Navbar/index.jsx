@@ -1,7 +1,7 @@
 import React from 'react'
 import './style.scss'
 
-import Logo from '../../images/logo.png'
+import Logo from '../../images/blaze-punch.png'
 
 import {
   Navbar,
@@ -16,6 +16,7 @@ import {
 } from 'react-bootstrap'
 
 //
+
 const AppNavbar = () => {
   return (
     <Navbar className='navbar__container'>
@@ -39,6 +40,7 @@ const AppNavbar = () => {
             >
               <Nav.Link href='#events' className='navbar__active-link'>
                 <i class='fas fa-calendar-week fa-2x' />
+                {true && <div className='active-link__bottom'></div>}
               </Nav.Link>
             </OverlayTrigger>
           </Nav>

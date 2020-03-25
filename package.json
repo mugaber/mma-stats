@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.13.0",
+    "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "node-sass": "^4.13.1",
     "react": "^16.13.1",
