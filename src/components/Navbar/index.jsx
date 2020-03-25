@@ -3,6 +3,7 @@ import './style.scss'
 
 import { withRouter } from 'react-router-dom'
 
+import LoginForm from '../LoginForm'
 import SignupForm from '../SignupForm'
 import Logo from '../../images/blaze-punch.png'
 
@@ -28,6 +29,8 @@ const AppNavbar = ({ history }) => {
 
   const [showSignup, setShowSignup] = useState(false)
 
+  const [showLogin, setShowLogin] = useState(false)
+
   return (
     <Navbar className='navbar__container'>
       <Container fluid>
@@ -37,8 +40,12 @@ const AppNavbar = ({ history }) => {
           </Navbar.Brand>
         </Col>
 
+        {/* Page Navigation */}
+
         <Col sm={5}>
           <Nav className='navbar-options'>
+            {/* Events */}
+
             <OverlayTrigger
               key='bottom'
               placement='bottom'
@@ -59,13 +66,19 @@ const AppNavbar = ({ history }) => {
           </Nav>
         </Col>
 
+        {/* Controls */}
+
         <Col className='sign-buttons__container'>
-          <Button variant='outline-success'>Log In</Button>
+          <Button variant='outline-success' onClick={() => setShowLogin(true)}>
+            Log In
+          </Button>
 
           <Button variant='outline-primary' onClick={() => setShowSignup(true)}>
             Sign Up
           </Button>
         </Col>
+
+        {/* Signup Modal */}
 
         <Modal
           centered
@@ -79,6 +92,23 @@ const AppNavbar = ({ history }) => {
 
           <Modal.Body>
             <SignupForm />
+          </Modal.Body>
+        </Modal>
+
+        {/* Login Modal */}
+
+        <Modal
+          centered
+          show={showLogin}
+          aria-labelledby='contained-modal-title-vcenter'
+          onHide={() => setShowLogin(false)}
+        >
+          <Modal.Header closeButton>
+            <Modal.Title id='contained-modal-title-vcenter'>Log In</Modal.Title>
+          </Modal.Header>
+
+          <Modal.Body>
+            <LoginForm />
           </Modal.Body>
         </Modal>
       </Container>

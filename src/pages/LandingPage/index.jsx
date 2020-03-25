@@ -13,7 +13,7 @@ const LandingPage = () => {
           </Col>
 
           <Col>
-            <p>Your home for all the info about MMA and valuable insights</p>
+            <p>Your home for all the info about MMA & UFC and valuable insights</p>
           </Col>
         </Container>
       </div>

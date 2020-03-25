@@ -16,7 +16,7 @@ const initFormErrors = {
 
 //
 
-const SignupForm = ({ showModal, setShowModal }) => {
+const SignupForm = () => {
   const [formInputs, setFormInputs] = useState({
     name: '',
     email: '',
