@@ -39,7 +39,7 @@ const AppNavbar = () => {
               }
             >
               <Nav.Link href='#events' className='navbar__active-link'>
-                <i class='fas fa-calendar-week fa-2x' />
+                <i className='fas fa-calendar-week fa-2x' />
                 {true && <div className='active-link__bottom'></div>}
               </Nav.Link>
             </OverlayTrigger>
