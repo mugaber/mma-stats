@@ -10,6 +10,7 @@ import Footer from './components/Footer'
 
 import LandingPage from './pages/LandingPage'
 import EventsPage from './pages/EventsPage'
+import SignupPage from './pages/SignupPage'
 
 import setAuthToken from './utils/setAuthToken'
 import { loadUser } from './redux/auth/actions'
@@ -31,15 +32,19 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <PersistGate loading={null} persistor={persistor}>
-          <Navbar />
-
-          <Route exact path='/' component={LandingPage} />
-
           <Switch>
-            <Route exact path='/events' component={EventsPage} />
-          </Switch>
+            <Route exact path='/signup' component={SignupPage} />
 
-          <Footer />
+            <>
+              <Navbar />
+
+              <Route exact path='/' component={LandingPage} />
+
+              <Route exact path='/events' component={EventsPage} />
+
+              <Footer />
+            </>
+          </Switch>
         </PersistGate>
       </Router>
     </Provider>

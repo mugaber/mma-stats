@@ -25,7 +25,7 @@ const EventsPage = () => {
     const fetchEvents = async () => {
       setLoading(true)
       setEvents(eventsArray)
-      setTimeout(() => setLoading(false), 500)
+      setTimeout(() => setLoading(false), 100)
     }
 
     fetchEvents()

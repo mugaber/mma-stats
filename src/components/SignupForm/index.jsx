@@ -3,28 +3,29 @@ import './style.scss'
 
 import { Form, Button } from 'react-bootstrap'
 
-import axios from 'axios'
+import { connect } from 'react-redux'
+import { register } from '../../redux/auth/actions'
 
 //
 
 const initFormErrors = {
   name: { state: false, text: '' },
   email: { state: false, text: '' },
-  password1: { state: false, text: '' },
+  password: { state: false, text: '' },
   password2: { state: false, text: '' }
 }
 
 //
 
-const SignupForm = () => {
+const SignupForm = ({ register }) => {
   const [formInputs, setFormInputs] = useState({
     name: '',
     email: '',
-    password1: '',
+    password: '',
     password2: ''
   })
 
-  const { name, email, password1, password2 } = formInputs
+  const { name, email, password, password2 } = formInputs
 
   const [formErrors, setFormErrors] = useState(initFormErrors)
 
@@ -39,7 +40,7 @@ const SignupForm = () => {
     e.preventDefault()
 
     const emailRe = /^(\w){2,20}@(\w){2,10}\.(\w){2,10}$/gi
-    const nameRe = /^(\w){2,10}[\ ]?(\w){2,10}?$/gi
+    const nameRe = /^(\w){2,10}(\ )?(\w){2,10}?$/gi
 
     const isNameValid = nameRe.test(name)
     if (!isNameValid)
@@ -58,34 +59,29 @@ const SignupForm = () => {
         email: { state: true, text: 'Invalid email address' }
       })
 
-    const isPasswordValid = password1.length >= 8
+    const isPasswordValid = password.length >= 8
     if (!isPasswordValid)
       setFormErrors({
         ...formErrors,
-        password1: {
+        password: {
           state: true,
           text: 'Password can not be less than 8 charachters long'
         }
       })
 
-    const isPasswordsMatch = password1 === password2
+    const isPasswordsMatch = password === password2
     if (!isPasswordsMatch)
       setFormErrors({
         ...formErrors,
         password2: { state: true, text: 'Passwords do not match' }
       })
 
-    if (!isNameValid || !isEmailValid || !isPasswordValid || !isPasswordsMatch) return
+    if (!isNameValid || !isEmailValid || !isPasswordValid || !isPasswordsMatch)
+      return alert('invalid form inputs')
 
-    const config = { headers: { 'Content-Type': 'application/json' } }
-    const body = JSON.stringify({ name, email, password: password1 })
+    register({ name, email, password })
 
-    try {
-      const res = await axios.post('/api/users', body, config)
-      console.log(res, res.data)
-    } catch (error) {
-      console.error('signup error', error.response.data)
-    }
+    // TO-DO : alert user
   }
 
   return (
@@ -119,8 +115,8 @@ const SignupForm = () => {
         <Form.Control
           required
           type='password'
-          name='password1'
-          value={password1}
+          name='password'
+          value={password}
           onChange={handleInputChange}
           placeholder='Password'
         />
@@ -145,4 +141,4 @@ const SignupForm = () => {
   )
 }
 
-export default SignupForm
+export default connect(null, { register })(SignupForm)

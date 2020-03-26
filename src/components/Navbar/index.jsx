@@ -4,7 +4,6 @@ import './style.scss'
 import { withRouter } from 'react-router-dom'
 
 import LoginForm from '../LoginForm'
-import SignupForm from '../SignupForm'
 import Logo from '../../images/blaze-punch.png'
 
 import {
@@ -26,8 +25,6 @@ const AppNavbar = ({ history }) => {
   useEffect(() => {
     setActivePage(history.location.pathname.slice(1))
   }, [history.location])
-
-  const [showSignup, setShowSignup] = useState(false)
 
   const [showLogin, setShowLogin] = useState(false)
 
@@ -73,27 +70,10 @@ const AppNavbar = ({ history }) => {
             Log In
           </Button>
 
-          <Button variant='outline-primary' onClick={() => setShowSignup(true)}>
+          <Button variant='outline-primary' onClick={() => history.push('/signup')}>
             Sign Up
           </Button>
         </Col>
-
-        {/* Signup Modal */}
-
-        <Modal
-          centered
-          show={showSignup}
-          aria-labelledby='contained-modal-title-vcenter'
-          onHide={() => setShowSignup(false)}
-        >
-          <Modal.Header closeButton>
-            <Modal.Title id='contained-modal-title-vcenter'>Sign Up</Modal.Title>
-          </Modal.Header>
-
-          <Modal.Body>
-            <SignupForm />
-          </Modal.Body>
-        </Modal>
 
         {/* Login Modal */}
 
