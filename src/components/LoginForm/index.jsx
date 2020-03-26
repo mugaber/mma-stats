@@ -25,7 +25,7 @@ const Login = () => {
     const body = JSON.stringify({ email, password: password })
 
     try {
-      const res = await axios.post('http://localhost:5000/api/auth', body, config)
+      const res = await axios.post('/api/auth', body, config)
       console.log(res)
     } catch (err) {
       console.log(err.response.data)

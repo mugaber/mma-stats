@@ -1,5 +1,6 @@
 import React from 'react'
-
+import { Provider } from 'react-redux'
+import { store, persistor } from './redux/store'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import Navbar from './components/Navbar'
@@ -7,22 +8,27 @@ import Footer from './components/Footer'
 
 import LandingPage from './pages/LandingPage'
 import EventsPage from './pages/EventsPage'
+import { PersistGate } from 'redux-persist/integration/react'
 
-function App() {
+//
+
+const App = () => {
   return (
-    <Router>
-      <>
-        <Navbar />
+    <Provider store={store}>
+      <Router>
+        <PersistGate loading={null} persistor={persistor}>
+          <Navbar />
 
-        <Route exact path='/' component={LandingPage} />
+          <Route exact path='/' component={LandingPage} />
 
-        <Switch>
-          <Route exact path='/events' component={EventsPage} />
-        </Switch>
+          <Switch>
+            <Route exact path='/events' component={EventsPage} />
+          </Switch>
 
-        <Footer />
-      </>
-    </Router>
+          <Footer />
+        </PersistGate>
+      </Router>
+    </Provider>
   )
 }
 

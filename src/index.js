@@ -7,6 +7,11 @@ import '@fortawesome/fontawesome-free/css/all.css'
 
 import App from './App'
 
-if (module.hot) module.hot.accept()
+const rednerApp = () => {
+  ReactDOM.render(<App />, document.getElementById('root'))
+}
 
-ReactDOM.render(<App />, document.getElementById('root'))
+if (process.env.NODE_ENV !== 'production' && module.hot)
+  module.hot.accept('./App', rednerApp)
+
+rednerApp()

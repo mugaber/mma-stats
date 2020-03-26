@@ -81,7 +81,7 @@ const SignupForm = () => {
     const body = JSON.stringify({ name, email, password: password1 })
 
     try {
-      const res = await axios.post('http://localhost:5000/api/users', body, config)
+      const res = await axios.post('/api/users', body, config)
       console.log(res, res.data)
     } catch (error) {
       console.error('signup error', error.response.data)
