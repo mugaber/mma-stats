@@ -18,7 +18,7 @@ export const loadUser = () => async dispatch => {
   }
 
   try {
-    const res = await axios.get('/api/auth')
+    const res = await axios.get('https://bold-nonchalant-alpaca.glitch.me/api/auth')
 
     dispatch({
       type: USER_LOADED,
@@ -38,7 +38,11 @@ export const register = ({ name, email, password }) => async dispatch => {
   const body = JSON.stringify({ name, email, password })
 
   try {
-    const res = await axios.post('/api/users', body, config)
+    const res = await axios.post(
+      'https://bold-nonchalant-alpaca.glitch.me/api/users',
+      body,
+      config
+    )
     console.log('from register', res)
 
     dispatch({
@@ -66,7 +70,11 @@ export const login = (email, password) => async dispatch => {
   const body = JSON.stringify({ email, password })
 
   try {
-    const res = await axios.post('/api/auth', body, config)
+    const res = await axios.post(
+      'https://bold-nonchalant-alpaca.glitch.me/api/auth',
+      body,
+      config
+    )
 
     dispatch({
       type: LOGIN_SUCCESS,
