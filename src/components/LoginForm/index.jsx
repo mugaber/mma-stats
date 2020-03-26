@@ -1,13 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './style.scss'
+
+import { connect } from 'react-redux'
+import { login } from '../../redux/auth/actions'
 
 import { Form, Button } from 'react-bootstrap'
 
-import axios from 'axios'
-
 //
 
-const Login = () => {
+const Login = ({ login, setShowLogin, isAuthenticated }) => {
+  useEffect(() => {
+    if (isAuthenticated) setShowLogin(false)
+  }, [isAuthenticated])
+
   const [formData, setFormDate] = useState({
     email: '',
     password: ''
@@ -17,19 +22,11 @@ const Login = () => {
 
   const handleChange = e => setFormDate({ ...formData, [e.target.name]: e.target.value })
 
-  const handleSubmit = async e => {
+  const handleSubmit = e => {
     e.preventDefault()
     if (!email || !password) return alert('email and password are required')
 
-    const config = { headers: { 'Content-Type': 'application/json' } }
-    const body = JSON.stringify({ email, password: password })
-
-    try {
-      const res = await axios.post('/api/auth', body, config)
-      console.log(res)
-    } catch (err) {
-      console.log(err.response.data)
-    }
+    login(email, password)
   }
 
   return (
@@ -68,4 +65,8 @@ const Login = () => {
   )
 }
 
-export default Login
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+})
+
+export default connect(mapStateToProps, { login })(Login)

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import './style.scss'
 
 import { withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { logout } from '../../redux/auth/actions'
 
 import LoginForm from '../LoginForm'
 import Logo from '../../images/blaze-punch.png'
@@ -19,7 +21,7 @@ import {
 
 //
 
-const AppNavbar = ({ history }) => {
+const AppNavbar = ({ history, isAuthenticated, logout }) => {
   const [activePage, setActivePage] = useState('')
 
   useEffect(() => {
@@ -66,13 +68,21 @@ const AppNavbar = ({ history }) => {
         {/* Controls */}
 
         <Col className='sign-buttons__container'>
-          <Button variant='outline-success' onClick={() => setShowLogin(true)}>
-            Log In
-          </Button>
+          {!isAuthenticated ? (
+            <>
+              <Button variant='outline-success' onClick={() => setShowLogin(true)}>
+                Log In
+              </Button>
 
-          <Button variant='outline-primary' onClick={() => history.push('/signup')}>
-            Sign Up
-          </Button>
+              <Button variant='outline-primary' onClick={() => history.push('/signup')}>
+                Sign Up
+              </Button>
+            </>
+          ) : (
+            <Button variant='outline-danger' onClick={() => logout()}>
+              Log Out
+            </Button>
+          )}
         </Col>
 
         {/* Login Modal */}
@@ -88,7 +98,7 @@ const AppNavbar = ({ history }) => {
           </Modal.Header>
 
           <Modal.Body>
-            <LoginForm />
+            <LoginForm setShowLogin={setShowLogin} />
           </Modal.Body>
         </Modal>
       </Container>
@@ -96,4 +106,8 @@ const AppNavbar = ({ history }) => {
   )
 }
 
-export default withRouter(AppNavbar)
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+})
+
+export default withRouter(connect(mapStateToProps, { logout })(AppNavbar))
