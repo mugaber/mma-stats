@@ -29,6 +29,12 @@
     }
   }
 
+  .events__table {
+    width: 70%;
+    margin: 0 auto;
+    border-radius: 10px;
+  }
+
   .events__container {
     width: 80%;
     min-height: 80vh;
@@ -45,7 +51,6 @@
   }
 
   .pagination__container {
-    width: 80%;
     margin: 1rem auto 0px;
 
     display: flex;

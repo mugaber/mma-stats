@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import './style.scss'
 
-import EventItem from '../../components/EventItem'
 import Pagination from '../../components/Pagination'
 
-import { Container, Row, Col, Spinner } from 'react-bootstrap'
+import { Table } from 'react-bootstrap'
 
 import eventsObj from '../../data'
 
@@ -41,41 +40,43 @@ const EventsPage = () => {
 
   return (
     <div className='evnets-page__container'>
-      <Container fluid className='events__navigation'>
-        <Row>
-          <Col xs={5} className='name-header'>
-            <h5>Name</h5>
-          </Col>
-          <Col>
-            <h5>Date</h5>
-          </Col>
-          <Col xs={4} className='location-header'>
-            <h5>Location</h5>
-          </Col>
-        </Row>
-      </Container>
+      <Table striped bordered hover className='events__table'>
+        <thead className='events__navigation'>
+          <tr>
+            <th></th>
+            <th style={{ width: '38%' }}>Name</th>
+            <th style={{ width: '20%' }}>Date</th>
+            <th style={{ width: '37%' }}>Location</th>
+          </tr>
+        </thead>
 
-      <div className='events__container'>
-        {loading ? (
-          <Spinner variant='primary' animation='border' className='events-spinner' />
-        ) : (
-          <>
-            {currentEvents.map(item => (
-              <Container fluid key={item.cards_id}>
-                <EventItem item={item} />
-              </Container>
-            ))}
+        <tbody>
+          {currentEvents.map((item, idx) => (
+            <tr key={item.name}>
+              <td>{idx + 1 + (currentPage - 1) * 10}</td>
+              <td>
+                {item.link ? (
+                  <a href={item.link} target='_blank' rel='noopener noreferrer'>
+                    {item.name}
+                  </a>
+                ) : (
+                  <p>{item.name}</p>
+                )}
+              </td>
+              <td>{item.date && <p>{item.date}</p>}</td>
+              <td>{item.place && <p>{item.place}</p>}</td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
 
-            <div className='pagination__container'>
-              <Pagination
-                eventsPerPage={eventsPerPage}
-                totalEvents={events.length}
-                currentPage={currentPage}
-                paginate={paginate}
-              />
-            </div>
-          </>
-        )}
+      <div className='pagination__container'>
+        <Pagination
+          eventsPerPage={eventsPerPage}
+          totalEvents={events.length}
+          currentPage={currentPage}
+          paginate={paginate}
+        />
       </div>
     </div>
   )

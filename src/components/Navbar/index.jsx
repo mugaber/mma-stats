@@ -16,12 +16,14 @@ import {
   Col,
   Tooltip,
   OverlayTrigger,
-  Modal
+  Modal,
+  Image,
+  Dropdown
 } from 'react-bootstrap'
 
 //
 
-const AppNavbar = ({ history, isAuthenticated, logout }) => {
+const AppNavbar = ({ history, user, isAuthenticated, logout }) => {
   const [activePage, setActivePage] = useState('')
 
   useEffect(() => {
@@ -79,9 +81,21 @@ const AppNavbar = ({ history, isAuthenticated, logout }) => {
               </Button>
             </>
           ) : (
-            <Button variant='outline-danger' onClick={() => logout()}>
-              Log Out
-            </Button>
+            <Dropdown id='navbar-dropdown' drop='left'>
+              <Dropdown.Toggle variant='primary' id='user-dropdown'>
+                <Image src={user.avatar} roundedCircle /> {user.name}
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Button
+                  variant='outline-danger'
+                  onClick={() => logout()}
+                  style={{ position: 'relative', left: '2rem' }}
+                >
+                  Log Out
+                </Button>
+              </Dropdown.Menu>
+            </Dropdown>
           )}
         </Col>
 
@@ -107,6 +121,7 @@ const AppNavbar = ({ history, isAuthenticated, logout }) => {
 }
 
 const mapStateToProps = state => ({
+  user: state.auth.user,
   isAuthenticated: state.auth.isAuthenticated
 })
 
