@@ -5,7 +5,7 @@ import Pagination from '../../components/Pagination'
 
 import { Table } from 'react-bootstrap'
 
-import eventsObj from '../../data'
+import eventsObj from '../../fights'
 
 const eventsArray = []
 for (let key in eventsObj) {

@@ -1,0 +1,14 @@
+.fighers-page__container {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(234, 234, 234);
+
+  .fighters-header {
+    margin: 2rem auto 0;
+  }
+
+  .fighter-table {
+    margin: 0 auto;
+    padding: 1.5rem 0;
+  }
+}

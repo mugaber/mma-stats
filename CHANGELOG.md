@@ -1,7 +1,9 @@
 ## MMA Stats
 
-### changes
+### Changes
 
-- deleted EVentItem component
-- changed the veiw of events to using table instead
-- changed logout button to be in dropdown showing user name and avatar
+- changed data.js to fights.js
+
+### Additions
+
+- fighters page showing minimal info about fighters with pagination using material ui

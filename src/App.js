@@ -10,6 +10,7 @@ import Footer from './components/Footer'
 
 import LandingPage from './pages/LandingPage'
 import EventsPage from './pages/EventsPage'
+import FightersPage from './pages/FightersPage'
 import SignupPage from './pages/SignupPage'
 
 import setAuthToken from './utils/setAuthToken'
@@ -42,6 +43,7 @@ const App = () => {
 
               <Route exact path='/events' component={EventsPage} />
 
+              <Route exact path='/fighters' component={FightersPage} />
               <Footer />
             </>
           </Switch>

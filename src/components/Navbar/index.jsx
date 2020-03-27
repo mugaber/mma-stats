@@ -7,6 +7,7 @@ import { logout } from '../../redux/auth/actions'
 
 import LoginForm from '../LoginForm'
 import Logo from '../../images/blaze-punch.png'
+import Fighter from '../../images/fighter.png'
 
 import {
   Navbar,
@@ -45,10 +46,10 @@ const AppNavbar = ({ history, user, isAuthenticated, logout }) => {
 
         <Col sm={5}>
           <Nav className='navbar-options'>
-            {/* Events */}
+            {/* EVENTS */}
 
             <OverlayTrigger
-              key='bottom'
+              key='events-overlay'
               placement='bottom'
               overlay={
                 <Tooltip id='tooltip-bottom'>
@@ -62,6 +63,26 @@ const AppNavbar = ({ history, user, isAuthenticated, logout }) => {
               >
                 <i className='fas fa-calendar-week fa-2x' />
                 {activePage === 'events' && <div className='active-link__bottom'></div>}
+              </Nav.Link>
+            </OverlayTrigger>
+
+            {/* FIGHTERS */}
+
+            <OverlayTrigger
+              key='fighters-overlay'
+              placement='bottom'
+              overlay={
+                <Tooltip id='tooltip-bottom'>
+                  <strong>Fighters</strong>
+                </Tooltip>
+              }
+            >
+              <Nav.Link
+                onClick={() => history.push('/fighters')}
+                className={activePage === 'fighters' && 'navbar__active-link'}
+              >
+                <img src={Fighter} alt='fighter-img' style={{ height: '36px' }} />
+                {activePage === 'fighters' && <div className='active-link__bottom'></div>}
               </Nav.Link>
             </OverlayTrigger>
           </Nav>
