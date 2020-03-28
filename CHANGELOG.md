@@ -2,8 +2,8 @@
 
 ### Changes
 
-- changed data.js to fights.js
+- changed fights table to using react-bootstrap-table
 
 ### Additions
 
-- fighters page showing minimal info about fighters with pagination using material ui
+-

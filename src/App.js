@@ -44,6 +44,7 @@ const App = () => {
               <Route exact path='/events' component={EventsPage} />
 
               <Route exact path='/fighters' component={FightersPage} />
+
               <Footer />
             </>
           </Switch>
