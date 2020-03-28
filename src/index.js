@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom'
 import './index.scss'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '@fortawesome/fontawesome-free/css/all.css'
-import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css'
 
 import App from './App'
 
@@ -14,5 +13,7 @@ const rednerApp = () => {
 
 if (process.env.NODE_ENV !== 'production' && module.hot)
   module.hot.accept('./App', rednerApp)
+
+//
 
 rednerApp()
