@@ -32099,10 +32099,11 @@ export default {
     td_avg: '0%',
     td_acc: '0%',
     td_def: '0.0',
-    sub_avg: 'Record: 12-0-0',
-    record: '',
-    nick_name: 'Umar Nurmagomedov',
-    full_name: '2020-03-15 01:14:21.941634',
-    another_date: '2b6fc1c02736833d'
+    sub_avg: '',
+    record: 'Record: 12-0-0',
+    nick_name: '',
+    full_name: 'Umar Nurmagomedov',
+    another_date: '2020-03-15 01:14:21.941634',
+    fighter_id: "2b6fc1c02736833d"
   }
 }

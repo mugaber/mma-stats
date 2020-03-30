@@ -2,10 +2,10 @@
 
 ### Changes
 
-- moved fights table to it's own component
-- changed the style of events page (fights)
-- changed the file fighters to a bigger one
+- moved fights and fighters to the db and to be fetched using the server
+- renamed FightsTable to EventsTable
+- renamed any fights to events
 
 ### Additions
 
-- added search to fights table
+- getFighters and getEvents using the API and localStorage

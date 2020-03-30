@@ -1,5 +1,5 @@
-import React from 'react'
-import fightersData from '../../fighters'
+import React, { useEffect, useState } from 'react'
+import { getFighters } from '../../utils'
 import { withStyles } from '@material-ui/core/styles'
 
 import Paper from '@material-ui/core/Paper'
@@ -10,36 +10,6 @@ import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
 import TableContainer from '@material-ui/core/TableContainer'
 import TablePagination from '@material-ui/core/TablePagination'
-
-//
-
-const fightersArray = []
-for (let key in fightersData) fightersArray.push(fightersData[key])
-
-const columns = [
-  { id: 'firstName', label: 'FIRST' },
-  { id: 'lastName', label: 'LAST' },
-  { id: 'nickName', label: 'NICKNAME', minWidth: 200 },
-  { id: 'height', label: 'HEIGTH' },
-  { id: 'weight', label: 'WEIGTH' },
-  { id: 'reach', label: 'REACH' },
-  { id: 'stance', label: 'STANCE' },
-  { id: 'record', label: 'RECORD' }
-]
-
-const dataRows = fightersArray.map(fighter => {
-  return {
-    firstName: fighter.full_name.split(' ')[0],
-    lastName: fighter.full_name.split(' ')[1],
-    nickName: fighter.nick_name,
-    height: fighter.height,
-    weight: fighter.weight,
-    reach: fighter.reach,
-    stance: fighter.stance,
-    record: fighter.record,
-    fighterId: fighter.fighter_id
-  }
-})
 
 //
 
@@ -85,7 +55,42 @@ function stableSort(array, comparator) {
 
 const FightersTable = () => {
   const [page, setPage] = React.useState(0)
+  const [fightersArray, setFightersArray] = useState([])
   const [rowsPerPage, setRowsPerPage] = React.useState(10)
+
+  useEffect(() => {
+    const fetchFighters = async () => {
+      const fighters = (await getFighters()) || []
+      setFightersArray(fighters)
+    }
+
+    fetchFighters()
+  }, [])
+
+  const columns = [
+    { id: 'firstName', label: 'FIRST' },
+    { id: 'lastName', label: 'LAST' },
+    { id: 'nickName', label: 'NICKNAME', minWidth: 200 },
+    { id: 'height', label: 'HEIGTH' },
+    { id: 'weight', label: 'WEIGTH' },
+    { id: 'reach', label: 'REACH' },
+    { id: 'stance', label: 'STANCE' },
+    { id: 'record', label: 'RECORD' }
+  ]
+
+  const dataRows = fightersArray.map(fighter => {
+    return {
+      firstName: fighter.full_name.split(' ')[0],
+      lastName: fighter.full_name.split(' ')[1],
+      nickName: fighter.nick_name,
+      height: fighter.height,
+      weight: fighter.weight,
+      reach: fighter.reach,
+      stance: fighter.stance,
+      record: fighter.record,
+      fighterId: fighter.fighter_id
+    }
+  })
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage)

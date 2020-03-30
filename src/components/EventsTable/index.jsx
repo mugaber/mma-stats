@@ -1,22 +1,15 @@
-import React from 'react'
-import './fightsTable.scss'
+import React, { useEffect, useState } from 'react'
+import './eventsTable.scss'
 
 import BootstrapTable from 'react-bootstrap-table-next'
 import paginationFactory from 'react-bootstrap-table2-paginator'
 import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit'
 
-import eventsObj from '../../fights'
+import { getEvents } from '../../utils'
 
 //
 
 const { SearchBar } = Search
-
-const eventsArray = []
-for (let key in eventsObj) {
-  eventsArray.push(eventsObj[key])
-}
-
-//
 
 const columns = [
   {
@@ -72,13 +65,24 @@ const options = {
 //
 
 const EventsTable = () => {
+  const [eventsArray, setEventsArray] = useState([])
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      const fetchedEvents = await getEvents()
+      setEventsArray(fetchedEvents)
+    }
+
+    fetchEvents()
+  }, [])
+
   return (
     <div className='events__table'>
-      <ToolkitProvider keyField='id' data={eventsArray} columns={columns} search>
+      <ToolkitProvider keyField='name' data={eventsArray} columns={columns} search>
         {props => (
           <>
             <div className='events-table__header'>
-              <h4>Events and Fights</h4>
+              <h4>Events</h4>
               <div className='search-bar__container'>
                 <SearchBar
                   {...props.searchProps}

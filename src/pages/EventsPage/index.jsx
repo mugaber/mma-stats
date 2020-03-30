@@ -1,13 +1,13 @@
 import React from 'react'
 import './style.scss'
 
-import FightsTable from '../../components/FightsTable'
+import EventsTable from '../../components/EventsTable'
 
 const EventsPage = () => {
   return (
     <div className='evnets-page__container'>
       <div className='events-table__container'>
-        <FightsTable />
+        <EventsTable />
       </div>
     </div>
   )
