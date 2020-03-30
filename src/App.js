@@ -11,6 +11,7 @@ import Footer from './components/Footer'
 import LandingPage from './pages/Landing'
 import EventsPage from './pages/Events'
 import FightersPage from './pages/Fighters'
+import FighterPage from './pages/Fighter'
 import SignupPage from './pages/Signup'
 
 import setAuthToken from './utils/setAuthToken'
@@ -44,6 +45,8 @@ const App = () => {
               <Route exact path='/events' component={EventsPage} />
 
               <Route exact path='/fighters' component={FightersPage} />
+
+              <Route exact path='/fighter/:id' component={FighterPage} />
 
               <Footer />
             </>

@@ -1,0 +1,44 @@
+.fighter-page__container {
+  min-height: 70vh;
+  background-color: rgb(226, 226, 226);
+
+  display: flex;
+  flex-direction: column;
+
+  .fighter__container {
+    margin: 2rem auto;
+    position: relative;
+
+    width: 60%;
+    min-height: 60vh;
+
+    .fighter-header {
+      margin-bottom: 1rem;
+      padding: 0;
+    }
+
+    .fighter-record {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .fighter-info__box {
+      background-color: rgb(243, 243, 243);
+      display: flex;
+      flex-direction: row;
+      border: 1px solid black;
+      border-radius: 10px;
+
+      .fighter-info__text,
+      .fighter-info__numbers {
+        padding: 1rem 2rem 0 0;
+      }
+    }
+
+    .info-hover {
+      position: absolute;
+      top: 4rem;
+      right: 0;
+    }
+  }
+}

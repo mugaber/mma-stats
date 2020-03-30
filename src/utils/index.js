@@ -51,4 +51,30 @@ const getEvents = async () => {
   return null
 }
 
-export { getFighters, getEvents }
+//
+
+const getFighter = fighterId => {
+  const fightersLocal = localStorage.getItem('mma-stats-fighters')
+
+  let fighter
+  let fighters = []
+
+  try {
+    if (fightersLocal) fighters = JSON.parse(fightersLocal)
+
+    if (fighters.length)
+      fighter = fighters.filter(fighter => {
+        if (fighter._id === fighterId) return true
+      })[0]
+
+    if (fighter) return fighter
+  } catch (err) {
+    console.log('error getting fighters from LocalStorage', err)
+  }
+
+  // TO-DO: query API route with the fighterId
+}
+
+//
+
+export { getFighters, getEvents, getFighter }

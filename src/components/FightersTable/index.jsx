@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './fightersTable.scss'
+import { useHistory } from 'react-router-dom'
 import { getFighters } from '../../utils'
 
 import BootstrapTable from 'react-bootstrap-table-next'
@@ -61,8 +62,11 @@ const options = {
 
 const FightersTable = () => {
   const [fightersArray, setFightersArray] = useState([])
+  const [loading, setLoading] = useState(false)
+  const history = useHistory()
 
   useEffect(() => {
+    setLoading(true)
     const fetchFighters = async () => {
       const fighters = (await getFighters()) || []
       setFightersArray(fighters)
@@ -81,9 +85,15 @@ const FightersTable = () => {
       reach: fighter.reach,
       stance: fighter.stance,
       record: fighter.fights_record,
-      fighterId: fighter.fighter_id
+      fighterId: fighter._id
     }
   })
+
+  const rowEvents = {
+    onClick: (e, row, rowIndex) => {
+      history.push(`/fighter/${row.fighterId}`)
+    }
+  }
 
   return (
     <div className='fighters__table'>
@@ -103,6 +113,8 @@ const FightersTable = () => {
             <BootstrapTable
               hover
               {...props.baseProps}
+              rowEvents={rowEvents}
+              rowClasses='fighter-row'
               pagination={paginationFactory(options)}
             />
           </>
