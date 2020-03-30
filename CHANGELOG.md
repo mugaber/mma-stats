@@ -2,10 +2,9 @@
 
 ### Changes
 
-- moved fights and fighters to the db and to be fetched using the server
-- renamed FightsTable to EventsTable
-- renamed any fights to events
+- removed page from the folder names inside of pages folder
+- changed fightersTable from using material ui to using bootstrap table
 
 ### Additions
 
-- getFighters and getEvents using the API and localStorage
+-

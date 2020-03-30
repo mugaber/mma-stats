@@ -4,12 +4,8 @@ import FightersTable from '../../components/FightersTable'
 
 const FightersPage = () => {
   return (
-    <div className='fighers-page__container'>
-      <div className='fighters-header'>
-        <h2>Fighters</h2>
-      </div>
-
-      <div className='fighter-table'>
+    <div className='fighters-page__container'>
+      <div className='fighters-table__container'>
         <FightersTable />
       </div>
     </div>

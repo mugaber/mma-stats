@@ -1,0 +1,42 @@
+.fighters__table {
+  min-height: 80vh;
+
+  .fighters-table__header {
+    padding: 1rem 0 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    h4 {
+      font-size: 2rem;
+    }
+
+    input {
+      width: 20rem;
+    }
+  }
+
+  .react-bootstrap-table {
+    background-color: white;
+  }
+
+  thead {
+    color: white;
+    background-color: #1877f2;
+  }
+
+  .react-bootstrap-table-pagination {
+    padding-top: 0.5rem;
+
+    .react-bootstrap-table-pagination-list {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+    }
+  }
+
+  .react-bootstrap-table-pagination-total {
+    padding-left: 0.5rem;
+    text-decoration: underline;
+  }
+}
