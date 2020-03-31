@@ -2,9 +2,8 @@
 
 ### Changes
 
-- added row event to fighters table to go to specific fighter page
-- remvod pagination component, using bootstrap table pagination
+- changed signup form to formik 
 
 ### Additions
 
-- added fighter page 
+- added more signup and login form validation

@@ -136,7 +136,7 @@ const Fighter = () => {
           <div className='info-hover'>
             <WithOverLay
               overlay='Hover over the abbreviations'
-              text={<i class='fa fa-info-circle'></i>}
+              text={<i className='fa fa-info-circle'></i>}
             />
           </div>
         </Container>
