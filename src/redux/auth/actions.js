@@ -1,5 +1,5 @@
 import axios from 'axios'
-import setAuthToken from '../../utils/setAuthToken'
+import { setAuthToken } from '../../utils'
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
@@ -7,7 +7,7 @@ import {
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
-  USER_LOGOUT
+  USER_LOGOUT,
 } from '../actionTypes'
 
 //
@@ -22,11 +22,11 @@ export const loadUser = () => async dispatch => {
 
     dispatch({
       type: USER_LOADED,
-      payload: res.data
+      payload: res.data,
     })
   } catch (err) {
     dispatch({
-      type: AUTH_ERROR
+      type: AUTH_ERROR,
     })
   }
 }
@@ -45,7 +45,7 @@ export const register = ({ name, email, password }) => async dispatch => {
 
     dispatch({
       type: REGISTER_SUCCESS,
-      payload: res.data
+      payload: res.data,
     })
 
     dispatch(loadUser())
@@ -56,7 +56,7 @@ export const register = ({ name, email, password }) => async dispatch => {
     // TO-DO: SET UP AN ALERT
 
     dispatch({
-      type: REGISTER_FAIL
+      type: REGISTER_FAIL,
     })
   }
 }
@@ -72,7 +72,7 @@ export const login = (email, password) => async dispatch => {
 
     dispatch({
       type: LOGIN_SUCCESS,
-      payload: res.data
+      payload: res.data,
     })
 
     dispatch(loadUser())
@@ -83,7 +83,7 @@ export const login = (email, password) => async dispatch => {
     // TO-DO: SET UP AN ALERT
 
     dispatch({
-      type: LOGIN_FAIL
+      type: LOGIN_FAIL,
     })
   }
 }

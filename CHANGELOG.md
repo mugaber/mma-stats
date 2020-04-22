@@ -2,8 +2,6 @@
 
 ### Changes
 
-- changed signup form to formik 
+- changed to use data directly in the project
 
 ### Additions
-
-- added more signup and login form validation

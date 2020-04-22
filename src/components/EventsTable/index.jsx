@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import fights from '../../assets/fights'
 import './eventsTable.scss'
 
 import BootstrapTable from 'react-bootstrap-table-next'
 import paginationFactory from 'react-bootstrap-table2-paginator'
 import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit'
 
-import { getEvents } from '../../utils'
+const fightsData = Object.values(fights).map(fight => ({
+  name: fight.name,
+  date: fight.date,
+  location: fight.location,
+}))
 
 //
 
@@ -14,16 +19,16 @@ const { SearchBar } = Search
 const columns = [
   {
     dataField: 'name',
-    text: 'Name'
+    text: 'Name',
   },
   {
     dataField: 'date',
-    text: 'Date'
+    text: 'Date',
   },
   {
     dataField: 'location',
-    text: 'Location'
-  }
+    text: 'Location',
+  },
 ]
 
 //
@@ -56,24 +61,19 @@ const customTotal = (from, to, size) => (
 
 const options = {
   showTotal: true,
-  paginationTotalRenderer: customTotal,
   sizePerPageRenderer,
   alwaysShowAllBtns: true,
-  hidePageListOnlyOnePage: true
+  hidePageListOnlyOnePage: true,
+  paginationTotalRenderer: customTotal,
 }
 
 //
 
 const EventsTable = () => {
-  const [eventsArray, setEventsArray] = useState([])
+  const [eventsArray, setEvents] = useState([])
 
   useEffect(() => {
-    const fetchEvents = async () => {
-      const fetchedEvents = await getEvents()
-      setEventsArray(fetchedEvents)
-    }
-
-    fetchEvents()
+    setEvents(fightsData)
   }, [])
 
   return (

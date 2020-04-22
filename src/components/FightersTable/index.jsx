@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import './fightersTable.scss'
 import { useHistory } from 'react-router-dom'
-import { getFighters } from '../../utils'
+import fighters from '../../assets/fighters'
+import './fightersTable.scss'
 
 import BootstrapTable from 'react-bootstrap-table-next'
 import paginationFactory from 'react-bootstrap-table2-paginator'
@@ -19,7 +19,7 @@ const columns = [
   { dataField: 'weight', text: 'WEIGTH' },
   { dataField: 'reach', text: 'REACH' },
   { dataField: 'stance', text: 'STANCE' },
-  { dataField: 'record', text: 'RECORD' }
+  { dataField: 'record', text: 'RECORD' },
 ]
 
 //
@@ -55,44 +55,33 @@ const options = {
   paginationTotalRenderer: customTotal,
   sizePerPageRenderer,
   alwaysShowAllBtns: true,
-  hidePageListOnlyOnePage: true
+  hidePageListOnlyOnePage: true,
 }
 
 //
 
 const FightersTable = () => {
   const [fightersArray, setFightersArray] = useState([])
-  const [loading, setLoading] = useState(false)
   const history = useHistory()
 
   useEffect(() => {
-    setLoading(true)
-    const fetchFighters = async () => {
-      const fighters = (await getFighters()) || []
-      setFightersArray(fighters)
-    }
-
-    fetchFighters()
+    setFightersArray(Object.values(fighters))
   }, [])
 
-  const dataRows = fightersArray.map(fighter => {
-    return {
-      firstName: fighter.full_name.split(' ')[0],
-      lastName: fighter.full_name.split(' ')[1],
-      nickName: fighter.nick_name,
-      height: fighter.height,
-      weight: fighter.weight,
-      reach: fighter.reach,
-      stance: fighter.stance,
-      record: fighter.fights_record,
-      fighterId: fighter._id
-    }
-  })
+  const dataRows = fightersArray.map(fighter => ({
+    firstName: fighter.full_name.split(' ')[0],
+    lastName: fighter.full_name.split(' ')[1],
+    nickName: fighter.nick_name,
+    height: fighter.height,
+    weight: fighter.weight,
+    reach: fighter.reach,
+    stance: fighter.stance,
+    record: fighter.Record,
+    fighterId: fighter.id,
+  }))
 
   const rowEvents = {
-    onClick: (e, row, rowIndex) => {
-      history.push(`/fighter/${row.fighterId}`)
-    }
+    onClick: (e, row, rowIndex) => history.push(`/fighter/${row.fighterId}`),
   }
 
   return (

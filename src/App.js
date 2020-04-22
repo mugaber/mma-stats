@@ -14,14 +14,7 @@ import FightersPage from './pages/Fighters'
 import FighterPage from './pages/Fighter'
 import SignupPage from './pages/Signup'
 
-import setAuthToken from './utils/setAuthToken'
 import { loadUser } from './redux/auth/actions'
-
-//
-
-if (localStorage.token) {
-  setAuthToken(localStorage.token)
-}
 
 //
 

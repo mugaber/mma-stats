@@ -1,21 +1,20 @@
 import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import './fighterPage.scss'
 
-import { useParams } from 'react-router-dom'
-import { getFighter } from '../../utils'
-
+import fighters from '../../assets/fighters'
 import { Container, Row, Col, OverlayTrigger, Tooltip } from 'react-bootstrap'
 
 //
 
-const WithOverLay = ({ text, overlay }) => {
-  return (
-    <OverlayTrigger overlay={<Tooltip>{overlay}</Tooltip>}>
-      <p>{text}:</p>
-    </OverlayTrigger>
-  )
-}
+const WithOverLay = ({ text, overlay }) => (
+  <OverlayTrigger overlay={<Tooltip>{overlay}</Tooltip>}>
+    <p>{text}:</p>
+  </OverlayTrigger>
+)
 
+const fightersArray = Object.values(fighters)
+console.log(fightersArray[0])
 //
 
 const Fighter = () => {
@@ -23,27 +22,27 @@ const Fighter = () => {
   const [fighter, setFighter] = useState({})
 
   useEffect(() => {
-    const rFighter = getFighter(fighterId)
-    setFighter(rFighter)
+    const selectedFighter = fightersArray.filter(i => i.id === fighterId)[0]
+    setFighter(selectedFighter)
   }, [fighterId])
 
   const {
     full_name,
-    fights_record,
+    Record: fights_record,
     nick_name,
-    birth_date,
+    dob,
     weight,
     height,
     reach,
     stance,
-    slmp,
-    samp,
-    str_acc,
-    str_dev,
-    td_avg,
-    td_acc,
-    td_def,
-    sub_avg
+    SLpM,
+    SAmP,
+    'Str. Acc': str_acc,
+    'Str. Def': str_def,
+    'TD Avg.': td_avg,
+    'TD Acc.': td_acc,
+    'TD Def.': td_def,
+    'Sub. Avg.': sub_avg,
   } = fighter
 
   return (
@@ -70,7 +69,7 @@ const Fighter = () => {
                 <p>Height:</p>
                 <p>Stacne:</p>
                 <p>Reach:</p>
-                <p>dob:</p>
+                <p>DOB:</p>
               </div>
 
               <div className='fighter-info__numbers'>
@@ -78,7 +77,7 @@ const Fighter = () => {
                 <p>{height}</p>
                 <p>{stance}</p>
                 <p>{reach}</p>
-                <p>{birth_date}</p>
+                <p>{dob}</p>
               </div>
             </Col>
 
@@ -100,10 +99,10 @@ const Fighter = () => {
               </div>
 
               <div className='fighter-info__numbers'>
-                <p>{slmp}</p>
+                <p>{SLpM}</p>
                 <p>{str_acc}</p>
-                <p>{samp}</p>
-                <p>{str_dev}</p>
+                <p>{SAmP}</p>
+                <p>{str_def}</p>
               </div>
             </Col>
 

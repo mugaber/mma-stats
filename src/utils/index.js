@@ -77,4 +77,14 @@ const getFighter = fighterId => {
 
 //
 
-export { getFighters, getEvents, getFighter }
+const setAuthToken = token => {
+  if (token) {
+    Axios.defaults.headers.common['x-auth-token'] = token
+  } else {
+    delete Axios.defaults.headers.common['x-auth-token']
+  }
+}
+
+//
+
+export { getFighters, getEvents, getFighter, setAuthToken }
